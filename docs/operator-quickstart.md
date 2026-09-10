@@ -117,14 +117,14 @@ clojure -M:lint
 ```
 
 Real output ends with `errors: 0, warnings: 1` — the warning is an unused
-`input` binding at `src/port/murakumo.cljc:201`. The alias uses
+`input` binding at `src/port/murakumo.kotoba:201`. The alias uses
 `--fail-level error`, so this exits 0. (The elapsed time clj-kondo prints on
 the same line is machine- and load-dependent; do not treat it as an
 invariant.)
 
 ## 4. Exercise the actor boundary — deny by default
 
-The pure boundary lives in `src/port/murakumo.cljc`. With **no attestations**,
+The pure boundary lives in `src/port/murakumo.kotoba`. With **no attestations**,
 a cell plan is `:blocked` and carries zero effects:
 
 ```bash
