@@ -16,8 +16,8 @@ allowed to emit. Executing those effects is the runtime's job.
 |---|---|
 | [`actor-manifest.jsonld`](actor-manifest.jsonld) | Declarative actor manifest: 5 capabilities, 13 pipelines (2 cron, 1 `subscribeRepos`, 10 xrpc), 7 actor facets (regions and cargo types) |
 | [`actor-manifest.test.ts`](actor-manifest.test.ts) | vitest invariants over the manifest. **Currently 2 of 26 fail** — see *Known drift* below |
-| [`src/port/murakumo.cljc`](src/port/murakumo.cljc) | Pure actor boundary. `cell-plan` checks the 7 required gates and returns `:blocked` (zero effects) or `:ready` with one `:mst/put-record` effect per collection |
-| [`test/port/murakumo_test.cljc`](test/port/murakumo_test.cljc) | Contract tests for the boundary. They introspect `cell-specs` rather than hardcoding cell names, so they hold as the manifest changes |
+| [`src/port/murakumo.kotoba`](src/port/murakumo.kotoba) | Pure actor boundary. `cell-plan` checks the 7 required gates and returns `:blocked` (zero effects) or `:ready` with one `:mst/put-record` effect per collection |
+| [`test/port/murakumo_test.kotoba`](test/port/murakumo_test.kotoba) | Contract tests for the boundary. They introspect `cell-specs` rather than hardcoding cell names, so they hold as the manifest changes |
 | [`.well-known/did.json`](.well-known/did.json) | A DID document. **It is not the one currently served** — see *Identity* below |
 | [`storage-profile.edn`](storage-profile.edn) | Repository storage profile declaration (`:kotoba/local-agent-kagi-chunks-v1`) |
 | [`docs/operator-quickstart.md`](docs/operator-quickstart.md) | Runnable quickstart — every step in it was executed as written, and the output shown is the real output |
