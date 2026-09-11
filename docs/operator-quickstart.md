@@ -94,7 +94,7 @@ and `subscribeRepos` pipeline shapes, the 3-step occupancy pipeline, and the
 ## 3. Run the boundary contract tests
 
 ```bash
-clojure -M:test
+kbb -M:test
 ```
 
 Real output:
@@ -113,7 +113,7 @@ of cells; they do not hardcode cell names and so do not drift the way step 2
 did.
 
 ```bash
-clojure -M:lint
+kbb -M:lint
 ```
 
 Real output ends with `errors: 0, warnings: 1` — the warning is an unused
@@ -128,7 +128,7 @@ The pure boundary lives in `src/port/murakumo.kotoba`. With **no attestations**,
 a cell plan is `:blocked` and carries zero effects:
 
 ```bash
-nbb --classpath src -e '
+kbb --backend sci --classpath src -e '
 (require (quote [port.murakumo :as m]))
 (let [blocked (m/cell-plan :health {:attestations {}})]
   (println "status:" (:status blocked))
@@ -148,7 +148,7 @@ With all seven common gates attested, the same cell becomes `:ready` and plans
 one `:mst/put-record` effect per collection:
 
 ```bash
-nbb --classpath src -e '
+kbb --backend sci --classpath src -e '
 (require (quote [port.murakumo :as m]))
 (let [atts (into {} (map (fn [g] [g true]) m/common-gates))
       ready (m/cell-plan :health {:attestations atts
@@ -176,7 +176,7 @@ The same in aggregate over all 21 cells — this is the whole-actor deny-by-defa
 demonstration:
 
 ```bash
-nbb --classpath src -e '
+kbb --backend sci --classpath src -e '
 (require (quote [port.murakumo :as m]))
 (let [plans (m/all-cell-plans {})]
   (println "cells:" (count plans))
@@ -204,7 +204,7 @@ prefix, replaces anything outside `[A-Za-z0-9._~-]` with `-`, and never
 returns a blank:
 
 ```bash
-nbb --classpath src -e '
+kbb --backend sci --classpath src -e '
 (require (quote [port.murakumo :as m]))
 (println (m/safe-rkey "did:web:port.etzhayyim.com"))
 (println (m/safe-rkey ""))

@@ -96,8 +96,8 @@ coverage pair is intended.
 ## Running it
 
 ```bash
-clojure -M:test    # boundary contract tests — 9 tests, 291 assertions, 0 failures
-clojure -M:lint    # clj-kondo — 0 errors, 1 warning
+kbb -M:test    # boundary contract tests — 9 tests, 291 assertions, 0 failures
+kbb -M:lint    # clj-kondo — 0 errors, 1 warning
 ```
 
 The full walk-through, including the manifest suite and the identity probes,
